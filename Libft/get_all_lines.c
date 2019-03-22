@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 22:36:46 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/19 23:44:20 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/21 07:34:27 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		get_all_lines(char **line, int fd)
 	{
 		i = read(fd, add_char, 1);
 		if (i == 0)
-			break;
+			break ;
 		tmp = str;
 		str = ft_strjoin(str, add_char);
 		free(tmp);

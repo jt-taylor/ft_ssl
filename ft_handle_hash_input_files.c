@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 03:33:38 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/20 16:40:15 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/21 07:35:23 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void						ft_ssl_handle_files_hash_no_rotate(t_ssl *t,
 
 	i = search_initial_command(argv);
 	if (!t->opt_q)
-{
+	{
 		(i = 1) ? ft_putstr("MD5 (") : 0;
 		ft_printf("%s) = ", argv[t->file_counter]);
 	}
-	ft_ssl_jumptable_array[i - 1](t->input_stream, t);
+	g_ft_ssl_jumptable_array[i - 1](t->input_stream, t);
 	ft_putchar('\n');
 }
 
@@ -48,7 +48,7 @@ void						ft_ssl_handle_files_hash_rotate(t_ssl *t,
 	int i;
 
 	i = search_initial_command(argv);
-	ft_ssl_jumptable_array[i - 1](t->input_stream, t);
+	g_ft_ssl_jumptable_array[i - 1](t->input_stream, t);
 	if (!t->opt_q)
 		ft_printf(" %s\n", argv[t->file_counter]);
 	else

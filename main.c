@@ -6,28 +6,28 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 07:49:07 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/20 23:13:02 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/21 07:45:30 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-ft_ssl_jumptable *ft_ssl_jumptable_array[] =
+t_ft_ssl_jumptable	*g_ft_ssl_jumptable_array[] =
 {
 	go_md5
 };
 
-int				search_initial_command(char **argv)
+int					search_initial_command(char **argv)
 {
 	int		i;
 
 	i = 0;
 	(ft_strcmp(argv[1], "md5") == 0) ? i = 1 : 0;
-
 	return (i);
 }
 
-static void		ft_ssl_parse_from_stdin(t_ssl *t, int confirm_selec, char *type)
+static void			ft_ssl_parse_from_stdin(t_ssl *t, int confirm_selec,
+		char *type)
 {
 	while (confirm_selec == 0)
 	{
@@ -38,52 +38,50 @@ static void		ft_ssl_parse_from_stdin(t_ssl *t, int confirm_selec, char *type)
 		free(type);
 	}
 	get_all_lines(&type, 0);
-	//
-	//ft_printf("\t%s\n", type);
-	ft_ssl_jumptable_array[confirm_selec - 1](type, t);
+	g_ft_ssl_jumptable_array[confirm_selec - 1](type, t);
 }
 
 /*
-** this one might be what is breaking it 
-static void			initialize_struct_options(t_ssl *t, char **argv, int ac)
-{
-	//
-	//ft_printf("here 1\n");
-	int			n;
-
-	t->opt_p	= 0;
-	t->opt_q	= 0;
-	t->opt_r	= 0;
-	t->opt_s	= 0;
-	t->i		= 3;
-	n			= 1;
-	while (t->i < ac)
-	{
-		if (argv[t->i][n] == '-')
-			while (argv[t->i][n])
-			{
-				(argv[t->i][n] == 'p') ? t->opt_p = 1 : 0;
-				(argv[t->i][n] == 'q') ? t->opt_q = 1 : 0;
-				(argv[t->i][n] == 'r') ? t->opt_r = 1 : 0;
-				if (argv[t->i][n] == 's')
-				{
-					t->opt_s++;
-					t->i++;
-					break ;
-				}
-				n++;
-			}
-		else
-			break ;
-		n = 0;
-		t->i++;
-	}
-	//
-	//ft_printf("%d is the value of t_opt_s", t->opt_s);
-	t->num_files = t->i - ac;
-}
+** this one might be what is breaking it
+** static void			initialize_struct_options(t_ssl *t, char **argv, int ac)
+** {
+** 	//ft_printf("here 1\n");
+** 	int			n;
+**
+** 	t->opt_p	= 0;
+** 	t->opt_q	= 0;
+** 	t->opt_r	= 0;
+** 	t->opt_s	= 0;
+** 	t->i		= 3;
+** 	n			= 1;
+** 	while (t->i < ac)
+** 	{
+** 		if (argv[t->i][n] == '-')
+** 			while (argv[t->i][n])
+** 			{
+** 				(argv[t->i][n] == 'p') ? t->opt_p = 1 : 0;
+** 				(argv[t->i][n] == 'q') ? t->opt_q = 1 : 0;
+** 				(argv[t->i][n] == 'r') ? t->opt_r = 1 : 0;
+** 				if (argv[t->i][n] == 's')
+** 				{
+** 					t->opt_s++;
+** 					t->i++;
+** 					break ;
+** 				}
+** 				n++;
+** 			}
+** 		else
+** 			break ;
+** 		n = 0;
+** 		t->i++;
+** 	}
+** 	//
+** 	//ft_printf("%d is the value of t_opt_s", t->opt_s);
+** 	t->num_files = t->i - ac;
+** }
 */
-static void				initialize_struct_options(t_ssl *t, char **argv, int ac)
+
+static void			initialize_struct_options(t_ssl *t, char **argv, int ac)
 {
 	t->i = 2;
 	t->opt_p = 0;
@@ -92,9 +90,6 @@ static void				initialize_struct_options(t_ssl *t, char **argv, int ac)
 	t->opt_s = 0;
 	while (t->i < ac)
 	{
-//		(ft_strcmp(argv[t->i], "-p") == 0) ? t->opt_p = 1 : 0;
-//		(ft_strcmp(argv[t->i], "-q") == 0) ? t->opt_q = 1 : 0;
-//		(ft_strcmp(argv[t->i], "-r") == 0) ? t->opt_r = 1 : 0;
 		if (ft_strcmp(argv[t->i], "-p") == 0)
 			t->opt_p = 1;
 		else if (ft_strcmp(argv[t->i], "-q") == 0)
@@ -113,7 +108,8 @@ static void				initialize_struct_options(t_ssl *t, char **argv, int ac)
 	t->num_files = t->i - ac;
 }
 
-static void				ft_ssl_distribute_hash(t_ssl *t, char **argv, int ac,  int index)
+static void			ft_ssl_distribute_hash(t_ssl *t, char **argv, int ac,
+		int index)
 {
 	initialize_struct_options(t, argv, ac);
 	if (t->opt_p || (!t->num_files && !t->opt_s))
@@ -121,12 +117,10 @@ static void				ft_ssl_distribute_hash(t_ssl *t, char **argv, int ac,  int index)
 		get_all_lines(&t->input_stream, 0);
 		if (t->opt_p)
 			ft_putstr(t->input_stream);
-		ft_ssl_jumptable_array[index - 1](t->input_stream, t);
+		g_ft_ssl_jumptable_array[index - 1](t->input_stream, t);
 		ft_putchar('\n');
 		free(t->input_stream);
 	}
-	//
-	//ft_printf("made distribute");
 	t->file_counter = 2;
 	while (t->file_counter < ac)
 		if (ft_ssl_s_flag_hash(t, argv, ac) == -1)
@@ -135,7 +129,7 @@ static void				ft_ssl_distribute_hash(t_ssl *t, char **argv, int ac,  int index)
 		ft_ssl_handle_files_hash(t, argv);
 }
 
-int				main(int ac, char **argv)
+int					main(int ac, char **argv)
 {
 	t_ssl		t;
 
@@ -146,9 +140,7 @@ int				main(int ac, char **argv)
 	}
 	else if ((search_initial_command(argv) > 0)
 			&& (search_initial_command(argv) <= 1))
-		//eventually make this based on ther return of search_initial_command after adding things other than hashes
 		ft_ssl_distribute_hash(&t, argv, ac, search_initial_command(argv));
-		//ft_ssl_jumptable[search_initial_command(argv)];
 	else
 		ft_printf("ft_ssl: Error: '%s' is an invalid command.\n\nStandard \
 commands:\n\nMessage Digest commands:\nmd5\nsha256\n\nCipher \

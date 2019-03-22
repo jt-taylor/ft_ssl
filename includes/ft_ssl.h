@@ -6,12 +6,13 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 07:49:39 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/20 23:13:02 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/21 09:08:38 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** Things to do -------------------------------------------------------------->
+** when using the -r and the -s flags together the md5 prefix is still added-->
 */
 
 #ifndef FT_SSL_H
@@ -22,7 +23,7 @@
 # include "get_next_line.h"
 # include <fcntl.h>
 
-typedef struct	s_ssl
+typedef struct				s_ssl
 {
 	int			opt_p;
 	int			opt_q;
@@ -53,12 +54,12 @@ typedef struct	s_ssl
 	int			fd;
 	char		*input_stream;
 	int			file_counter;
-}				t_ssl;
+}							t_ssl;
 
 /*
 ** main.c
 */
-int				search_initial_command(char **argv);
+int							search_initial_command(char **argv);
 
 /*
 ** misc_functions
@@ -75,7 +76,7 @@ void						go_md5(char *std, t_ssl *t);
 /*
 ** ft_ssl_handle_string_flag.c
 */
-int			ft_ssl_s_flag_hash(t_ssl *t, char **argv, int ac);
+int							ft_ssl_s_flag_hash(t_ssl *t, char **argv, int ac);
 
 /*
 ** ft_ssl_md5.c
@@ -86,18 +87,18 @@ int							md5(unsigned char *msg, size_t len, t_ssl *t);
 ** ft_handle_files_hash.c
 */
 
-
 void						ft_ssl_handle_files_hash(t_ssl *t, char **argv);
-
 
 /*
 ** function pointers
 */
-typedef void				ft_ssl_jumptable(char *, t_ssl *);
-//extern ft_ssl_jumptable		ft_ssl_jumptable_array[];
+typedef void				t_ft_ssl_jumptable(char *str, t_ssl *t);
+/*
+** //extern ft_ssl_jumptable		ft_ssl_jumptable_array[];
+** // the array size value needs to be updated for each new function added;
+*/
 
-// the array size value needs to be updated for each new function added;
-extern ft_ssl_jumptable *ft_ssl_jumptable_array[1];
+extern t_ft_ssl_jumptable	*g_ft_ssl_jumptable_array[];
 /*
 **extern ft_ssl_jumptable *ft_ssl_jumptable_array[] =
 **{

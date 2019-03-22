@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 17:47:03 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/19 18:57:45 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/21 07:33:42 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ char				*ft_ssl_add0(char *str)
 {
 	int		i;
 
-	 i = ft_strlen(str);
-	 while (i < 8)
-	 {
-		 ft_putchar('0');
-		 i++;
-	 }
-	 return (str);
+	i = ft_strlen(str);
+	while (i < 8)
+	{
+		ft_putchar('0');
+		i++;
+	}
+	return (str);
 }
 
-void			*ft_bzero_return(void *s, size_t n)
+void				*ft_bzero_return(void *s, size_t n)
 {
 	unsigned char	*i;
 	size_t			b;
