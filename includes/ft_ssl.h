@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 07:49:39 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/21 09:08:38 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/24 23:20:30 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,30 @@ typedef struct				s_ssl
 	uint32_t	h1;
 	uint32_t	h2;
 	uint32_t	h3;
+	uint32_t	h4;
+	uint32_t	h5;
+	uint32_t	h6;
+	uint32_t	h7;
 
 	uint32_t	a;
 	uint32_t	b;
 	uint32_t	c;
 	uint32_t	d;
-
+	uint32_t	e;
 	uint32_t	f;
 	uint32_t	g;
+	uint32_t	h;
+
 	uint32_t	*tmp;
+	uint32_t	*tmp_sha;
+	uint32_t	tmp_sha0;
+	uint32_t	tmp_sha1;
+	uint32_t	tmp_sha2;
+	uint32_t	tmp_sha3;
+	uint32_t	tmp_sha4;
+	uint32_t	tmp_sha5;
+	uint32_t	tmp_sha6;
+
 	uint32_t	tmp1;
 
 	int			i;
@@ -72,6 +87,7 @@ uint32_t					ft_ssl_reverse_uint32(uint32_t n);
 ** go_fun.c
 */
 void						go_md5(char *std, t_ssl *t);
+void						go_sha256(char *std, t_ssl *t);
 
 /*
 ** ft_ssl_handle_string_flag.c
@@ -90,14 +106,17 @@ int							md5(unsigned char *msg, size_t len, t_ssl *t);
 void						ft_ssl_handle_files_hash(t_ssl *t, char **argv);
 
 /*
-** function pointers
+** ft_ssl_sha256
 */
-typedef void				t_ft_ssl_jumptable(char *str, t_ssl *t);
+
+int							sha256(char *init, size_t len, t_ssl *t);
+
 /*
+** function pointers
 ** //extern ft_ssl_jumptable		ft_ssl_jumptable_array[];
 ** // the array size value needs to be updated for each new function added;
 */
-
+typedef void				t_ft_ssl_jumptable(char *str, t_ssl *t);
 extern t_ft_ssl_jumptable	*g_ft_ssl_jumptable_array[];
 /*
 **extern ft_ssl_jumptable *ft_ssl_jumptable_array[] =

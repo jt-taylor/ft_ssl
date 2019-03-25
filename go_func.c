@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 17:45:06 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/19 19:27:08 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/24 23:19:44 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,51 @@ void		go_md5(char *std, t_ssl *t)
 	ft_putstr(tmp);
 	free(tmp);
 }
+
+static void		print_sha_256_cont(t_ssl *t)
+{
+	char	*tmp;
+
+	tmp = ft_uitoa_base(t->h3, 16);
+	ft_ssl_add0(tmp);
+	ft_putstr(tmp);
+	free(tmp);
+	tmp = ft_uitoa_base(t->h4, 16);
+	ft_ssl_add0(tmp);
+	ft_putstr(tmp);
+	free(tmp);
+	tmp = ft_uitoa_base(t->h5, 16);
+	ft_ssl_add0(tmp);
+	ft_putstr(tmp);
+	free(tmp);
+	tmp = ft_uitoa_base(t->h6, 16);
+	ft_ssl_add0(tmp);
+	ft_putstr(tmp);
+	free(tmp);
+	tmp = ft_uitoa_base(t->h7, 16);
+	ft_ssl_add0(tmp);
+	ft_putstr(tmp);
+	free(tmp);
+}
+
+void		go_sha256(char *std, t_ssl *t)
+{
+	char	*tmp;
+
+	if (sha256(std, ft_strlen(std), t) == -1)
+			return ;
+	tmp = ft_uitoa_base(t->h0, 16);
+	ft_ssl_add0(tmp);
+	ft_putstr(tmp);
+	free(tmp);
+	tmp = ft_uitoa_base(t->h1, 16);
+	ft_ssl_add0(tmp);
+	ft_putstr(tmp);
+	free(tmp);
+	tmp = ft_uitoa_base(t->h2, 16);
+	ft_ssl_add0(tmp);
+	ft_putstr(tmp);
+	free(tmp);
+	print_sha_256_cont(t);
+}
+
