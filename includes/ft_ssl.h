@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 07:49:39 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/24 23:20:30 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/27 03:31:26 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct				s_ssl
 	uint32_t	h;
 
 	uint32_t	*tmp;
-	uint32_t	*tmp_sha;
+	uint32_t	*tmp_sha_ptr;
 	uint32_t	tmp_sha0;
 	uint32_t	tmp_sha1;
 	uint32_t	tmp_sha2;
@@ -82,6 +82,7 @@ int							search_initial_command(char **argv);
 char						*ft_ssl_add0(char *str);
 void						*ft_bzero_return(void *s, size_t n);
 uint32_t					ft_ssl_reverse_uint32(uint32_t n);
+uint32_t					rigthrotat(uint32_t x, uint32_t n);
 
 /*
 ** go_fun.c
