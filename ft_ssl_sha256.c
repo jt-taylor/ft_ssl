@@ -6,16 +6,15 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 07:00:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/27 03:39:52 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/27 22:21:27 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
 /*
-** I have no idea why but on very short strings it has a zero for the first
-** char but the rest of the digest is fine (???)
-** I have no idea how this happens
+** I have no idea how but sometimes on specific strings it losses athe first
+** char of data ???
 */
 
 const uint32_t g_k2[] = {0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
