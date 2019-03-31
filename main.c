@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 07:49:07 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/24 23:36:12 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/31 05:10:05 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 t_ft_ssl_jumptable	*g_ft_ssl_jumptable_array[] =
 {
 	go_md5,
-	go_sha256
+	go_sha256,
+	go_sha224
 };
 
 int					search_initial_command(char **argv)
@@ -25,6 +26,7 @@ int					search_initial_command(char **argv)
 	i = 0;
 	(ft_strcmp(argv[1], "md5") == 0) ? i = 1 : 0;
 	(ft_strcmp(argv[1], "sha256") == 0) ? i = 2 : 0;
+	(ft_strcmp(argv[1], "sha224") == 0) ? i = 3 : 0;
 	return (i);
 }
 
@@ -39,6 +41,8 @@ static void			ft_ssl_parse_from_stdin(t_ssl *t, int confirm_selec,
 			confirm_selec = 1;
 		else if (ft_strcmp(type, "sha256") == 0)
 			confirm_selec = 2;
+		else if (ft_strcmp(type, "sha224") == 0)
+			confirm_selec = 3;
 		free(type);
 	}
 	get_all_lines(&type, 0);
@@ -143,7 +147,7 @@ int					main(int ac, char **argv)
 		return (0);
 	}
 	else if ((search_initial_command(argv) > 0)
-			&& (search_initial_command(argv) <= 2))
+			&& (search_initial_command(argv) <= 3))
 		ft_ssl_distribute_hash(&t, argv, ac, search_initial_command(argv));
 	else
 		ft_printf("ft_ssl: Error: '%s' is an invalid command.\n\nStandard \

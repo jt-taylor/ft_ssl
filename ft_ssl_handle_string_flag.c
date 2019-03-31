@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 01:53:28 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/30 23:15:20 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/31 05:05:38 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void					ft_ssl_no_rotate_string(t_ssl *t, char **argv)
 	{
 		(i == 1) ? ft_putstr("MD5 (\"") : 0;
 		(i == 2) ? ft_putstr("SHA256 (\"") : 0;
+		(i == 3) ? ft_putstr("SHA224 (\"") : 0;
 		ft_printf("%s\") = ", argv[t->file_counter]);
 	}
 	g_ft_ssl_jumptable_array[i - 1](argv[t->file_counter], t);

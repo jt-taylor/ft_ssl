@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 07:49:39 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/27 03:31:26 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/31 05:14:41 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ uint32_t					rigthrotat(uint32_t x, uint32_t n);
 */
 void						go_md5(char *std, t_ssl *t);
 void						go_sha256(char *std, t_ssl *t);
+void						go_sha224(char *std, t_ssl *t);
 
 /*
 ** ft_ssl_handle_string_flag.c
@@ -111,6 +112,14 @@ void						ft_ssl_handle_files_hash(t_ssl *t, char **argv);
 */
 
 int							sha256(char *init, size_t len, t_ssl *t);
+
+/*
+** I wanted to do whirlpool but i gotta get something graded soon
+** so sha224 it is i guess
+** ft_ssl_sha224.c
+*/
+
+int							sha224(char *init_mg, size_t len, t_ssl *g);
 
 /*
 ** function pointers
