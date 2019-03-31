@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 17:47:03 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/27 03:31:26 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/31 03:27:24 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ uint32_t			ft_ssl_reverse_uint32(uint32_t n)
 		((n & 0xff00) << 8) | (n << 24));
 }
 
-uint32_t	rigthrotat(uint32_t x, uint32_t n)
+uint32_t			rigthrotat(uint32_t x, uint32_t n)
 {
 	return ((((unsigned int)x >> n)) | (x << (32 - n)));
 }

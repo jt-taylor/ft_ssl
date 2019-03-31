@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 07:00:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/27 22:21:27 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/03/31 03:28:07 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ void		schedule_array(t_ssl *t, int i)
 
 void		sha256_algo(t_ssl *t, int j)
 {
-	t->tmp_sha1 = rigthrotat(t->e, 6) ^ rigthrotat(t->e, 11) ^ rigthrotat(t->e, 25);
+	t->tmp_sha1 = rigthrotat(t->e, 6) ^ rigthrotat(t->e, 11)
+		^ rigthrotat(t->e, 25);
 	t->tmp_sha2 = (t->e & t->f) ^ ((~t->e) & t->g);
 	t->tmp_sha3 = t->h + t->tmp_sha1 + t->tmp_sha2 + g_k2[j] + t->tmp[j];
-	t->tmp_sha4 = rigthrotat(t->a, 2) ^ rigthrotat(t->a, 13) ^ rigthrotat(t->a, 22);
+	t->tmp_sha4 = rigthrotat(t->a, 2) ^ rigthrotat(t->a, 13)
+		^ rigthrotat(t->a, 22);
 	t->tmp_sha5 = (t->a & t->b) ^ (t->a & t->c) ^ (t->b & t->c);
 	t->tmp_sha6 = t->tmp_sha4 + t->tmp_sha5;
 	t->h = t->g;
