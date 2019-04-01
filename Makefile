@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/31 03:03:04 by jtaylor           #+#    #+#              #
-#    Updated: 2019/03/31 05:11:10 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/03/31 17:34:51 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC = main.c \
 	ft_ssl_sha224.c \
 	ft_ssl_md5.c \
 	ft_ssl_handle_string_flag.c \
-	ft_handle_hash_input_files.c
+	ft_handle_hash_input_files.c \
+	test_uitoa.c
 
 #OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 07:49:39 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/03/31 05:14:41 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/04/01 16:56:25 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,10 @@ extern t_ft_ssl_jumptable	*g_ft_ssl_jumptable_array[];
 **	go_md5
 **};
 */
+
+/*
+** testing
+*/
+char						*ft_unsigned_itoa_base(uint32_t n, int base);
 
 #endif
